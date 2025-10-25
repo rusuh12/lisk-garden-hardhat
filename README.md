@@ -5,7 +5,7 @@ Lisk Garden Contract
    0x77B39033Ba0CD7DC1F2C305BE4B6Df90ab717267
    ```
 
-LiskGarden is an Ethereum smart contract that allows users to plant, water, and harvest virtual plants. Each plant has growth stages and water levels, and users can earn rewards when a plant fully blooms.
+LiskGarden is an Ethereum smart contract that allows users to plant, water, and harvest virtual plants that deployed in Lisk Sepolia. Each plant has growth stages and water levels, and users can earn rewards when a plant fully blooms.
 
 ## Features
 - Plant seeds for 0.001 ETH
