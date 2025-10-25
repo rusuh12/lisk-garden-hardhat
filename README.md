@@ -1,57 +1,58 @@
-# Sample Hardhat 3 Beta Project (`node:test` and `viem`)
+# LiskGarden Hardhat Project
 
-This project showcases a Hardhat 3 Beta project using the native Node.js test runner (`node:test`) and the `viem` library for Ethereum interactions.
+LiskGarden is an Ethereum smart contract that allows users to plant, water, and harvest virtual plants. Each plant has growth stages and water levels, and users can earn rewards when a plant fully blooms.
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+## Features
+- Plant seeds for 0.001 ETH
+- Water plants to keep them alive
+- Plants grow over time depending on water and elapsed time
+- Harvest fully grown plants to earn rewards
+- Contract owner can withdraw ETH from the contract
 
-## Project Overview
+## Prerequisites
+Make sure you have installed:
+- [Node.js](https://nodejs.org/) v20+
+- [npm](https://www.npmjs.com/) 
+- Hardhat
 
-This example project includes:
+## Setup Project
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using [`node:test`](nodejs.org/api/test.html), the new Node.js native test runner, and [`viem`](https://viem.sh/).
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+1. Clone the repository:
+   ```
+   git clone https://github.com/rusuh12/lisk-garden-hardhat.git
+   cd lisk-garden-hardhat
+   ```
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Copy .env.example to .env and configure your environment variables:
+   ```
+   cp .env.example .env // make sure to change to your private key
+   ```
 
-## Usage
+## Deploy Contract and Interact
+Run Hardhat to deploy and interact with the contract on a network (e.g., Lisk-Sepolia):
+   ```
+    npx hardhat run scripts/interact.ts --network lisk-sepolia
+   ```
+   This script will:
+- Display total plants in the contract
+- Plant a new seed (costs 0.001 ETH)
+- Show details of the newly planted seed including ID, owner, growth stage, and water level
 
-### Running Tests
+## Running Tests
+Tests are written using node:test and Viem. To run tests locally:
+   ```
+    npx hardhat test
+   ```
+Test cases include:
+- Deploy contract and check owner
+- Plant seeds with sufficient ETH
+- Reject planting if ETH is insufficient
+- Water a plant and check water level
+- Check plant counter increments correctly
+- Owner can withdraw ETH from the contract
 
-To run all the tests in the project, execute the following command:
 
-```shell
-npx hardhat test
-```
 
-You can also selectively run the Solidity or `node:test` tests:
-
-```shell
-npx hardhat test solidity
-npx hardhat test nodejs
-```
-
-### Make a deployment to Sepolia
-
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
-
-To run the deployment to a local chain:
-
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
-
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
-
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
-
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
-
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
-
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
